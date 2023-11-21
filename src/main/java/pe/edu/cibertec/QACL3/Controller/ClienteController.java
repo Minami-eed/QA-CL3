@@ -35,9 +35,10 @@ public class ClienteController {
         return new ResponseEntity<Cliente>(newCliente, HttpStatus.OK);
     }
 
-    @PutMapping
-    public ResponseEntity<?> modificarCliente(@RequestBody Cliente cliente) {
-        Cliente newCliente = clienteService.modificarCliente(cliente);
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<?> modificarCliente(@PathVariable("id") Integer id, @RequestBody Cliente cliente) {
+        cliente.setId(id);
+        Cliente newCliente = clienteService.modificarCliente(id, cliente);
         return new ResponseEntity<Cliente>(newCliente, HttpStatus.OK);
     }
 
