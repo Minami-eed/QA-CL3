@@ -32,8 +32,18 @@ public class ClienteServiceImpl implements IClienteService {
     }
 
     @Override
-    public Cliente modificarCliente(Cliente cliente) {
-        return clienteRepo.save(cliente);
+    public Cliente modificarCliente(Integer id, Cliente cliente) {
+        Cliente oldCliente = clienteRepo.findById(id).orElse(null);
+        if (oldCliente != null) {
+            oldCliente.setNombre(cliente.getNombre());
+            oldCliente.setApellido(cliente.getApellido());
+            oldCliente.setDni(cliente.getDni());
+            oldCliente.setEmail(cliente.getEmail());
+            oldCliente.setTelefono(cliente.getTelefono());
+            return clienteRepo.save(oldCliente);
+        } else {
+            return null;
+        }
     }
 
     @Override
