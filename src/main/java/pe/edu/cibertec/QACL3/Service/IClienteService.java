@@ -11,7 +11,7 @@ public interface IClienteService {
 
     public Cliente registrarCliente(Cliente cliente);
 
-    public Cliente modificarCliente(Cliente cliente);
+    public Cliente modificarCliente(Integer id, Cliente cliente);
 
     public String eliminarCliente(Integer id);
 }
